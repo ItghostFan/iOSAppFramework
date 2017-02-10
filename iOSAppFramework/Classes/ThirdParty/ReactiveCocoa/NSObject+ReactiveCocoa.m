@@ -16,6 +16,8 @@ static const char *kNotificationDisposables = "NotificationDisposables";
 
 @implementation NSObject (ReactiveCocoa)
 
+#pragma mark - self public
+
 - (RACDisposable *)racObserveNotification:(NSString *)notificationName object:(id)object action:(void (^)(NSNotification *notification))action {
     
     RACDisposable *disposable = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:notificationName object:object] subscribeNext:action];
@@ -24,7 +26,7 @@ static const char *kNotificationDisposables = "NotificationDisposables";
         notificationDisposables = [RACCompoundDisposable compoundDisposable];
         objc_setAssociatedObject(self, kNotificationDisposables, notificationDisposables, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [self.rac_willDeallocSignal subscribeCompleted:^{
-            if (!notificationDisposables.disposed) {
+            if (!notificationDisposables.disposed) {    
                 [notificationDisposables dispose];
             }
         }];
@@ -48,6 +50,23 @@ static const char *kNotificationDisposables = "NotificationDisposables";
 
 - (RACDisposable *)racObserveSelector:(SEL)selector object:(id)object next:(void (^)(RACTuple *tuple))next {
     RACDisposable *disposable = [[object rac_signalForSelector:selector] subscribeNext:next];
+    [self addSelectorDisposable:disposable];
+    return disposable;
+}
+
+- (RACDisposable *)racObserveSelector:(SEL)selector fromProtocol:(Protocol *)fromProtocol fromobject:(id)object next:(void (^)(RACTuple *tuple))next {
+    RACDisposable *disposable = [[object rac_signalForSelector:selector fromProtocol:fromProtocol] subscribeNext:next];
+    [self addSelectorDisposable:disposable];
+    return disposable;
+}
+
+- (RACSignal *)racSelectorSignal:(SEL)selector {
+    return [self rac_signalForSelector:selector];
+}
+
+#pragma mark - self private
+
+- (void)addSelectorDisposable:(RACDisposable *)disposable {
     RACCompoundDisposable *selectorDisposables = objc_getAssociatedObject(self, kSelectorDisposables);
     if (selectorDisposables == nil) {
         selectorDisposables = [RACCompoundDisposable compoundDisposable];
@@ -59,11 +78,6 @@ static const char *kNotificationDisposables = "NotificationDisposables";
         }];
     }
     [selectorDisposables addDisposable:disposable];
-    return disposable;
-}
-
-- (RACSignal *)racSelectorSignal:(SEL)selector {
-    return [self rac_signalForSelector:selector];
 }
 
 @end

@@ -10,4 +10,6 @@
 
 @interface NSObject (iOS)
 
++ (NSString *)className;
+
 @end

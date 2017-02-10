@@ -10,4 +10,8 @@
 
 @implementation NSObject (iOS)
 
++ (NSString *)className {
+    return NSStringFromClass(self);
+}
+
 @end

@@ -12,4 +12,8 @@
 
 @interface NSObject (ReactiveCocoa)
 
+- (RACDisposable *)racObserveNotification:(NSString *)notificationName object:(id)object action:(void (^)(NSNotification *notification))action;
+- (RACDisposable *)racObserveNotification:(NSString *)notificationName object:(id)object selector:(SEL)selector;
+- (RACDisposable *)racObserveSelector:(SEL)selector object:(id)object next:(void (^)(RACTuple *tuple))next;
+
 @end

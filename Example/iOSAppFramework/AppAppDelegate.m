@@ -6,8 +6,6 @@
 //  Copyright (c) 2016 ItghostFan. All rights reserved.
 //
 
-#import "AppDefine.h"
-
 #import "AppAppDelegate.h"
 
 @implementation AppAppDelegate
