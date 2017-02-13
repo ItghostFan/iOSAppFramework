@@ -1,8 +1,8 @@
 use_frameworks!
 
 target 'iOSAppFramework_Example' do
-    pod 'iOSAppFramework', :path => '../', :subspecs => ['iOS']
-    pod 'iOSAppFramework', :path => '../', :subspecs => ['ThirdParty']
+    pod 'iOSAppFramework', :subspecs => ['iOS'], :path => '../'
+    pod 'iOSAppFramework', :subspecs => ['ThirdParty'], :path => '../'
 
   #target 'iOSAppFramework_Tests' do
    # inherit! :search_paths
