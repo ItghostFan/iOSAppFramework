@@ -54,7 +54,7 @@ static const char *kNotificationDisposables = "NotificationDisposables";
     return disposable;
 }
 
-- (RACDisposable *)racObserveSelector:(SEL)selector fromProtocol:(Protocol *)fromProtocol fromobject:(id)object next:(void (^)(RACTuple *tuple))next {
+- (RACDisposable *)racObserveSelector:(SEL)selector fromProtocol:(Protocol *)fromProtocol object:(id)object next:(void (^)(RACTuple *tuple))next {
     RACDisposable *disposable = [[object rac_signalForSelector:selector fromProtocol:fromProtocol] subscribeNext:next];
     [self addSelectorDisposable:disposable];
     return disposable;
