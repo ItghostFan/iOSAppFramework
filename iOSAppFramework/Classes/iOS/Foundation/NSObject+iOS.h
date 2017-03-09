@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define SAFE_INVOKE_BLOCK(block, ...) \
+if(block) { \
+    block(__VA_ARGS__); \
+}
+
 @interface NSObject (iOS)
 
 + (NSString *)className;
