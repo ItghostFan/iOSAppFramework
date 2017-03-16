@@ -11,7 +11,7 @@
 @class UIPage;
 @class UIScrollPageView;
 
-@protocol AppScroUIScrollPageViewDelegate <NSObject>
+@protocol UIScrollPageViewDelegate <NSObject>
 - (NSInteger)pageCount:(UIScrollPageView *)scrollPageView;
 - (NSInteger)pageColumnCount:(UIScrollPageView *)scrollPageView;
 - (NSInteger)pageRowCount:(UIScrollPageView *)scrollPageView;
@@ -22,7 +22,7 @@
 
 @interface UIScrollPageView : UIView
 
-@property (weak, nonatomic) id<AppScroUIScrollPageViewDelegate> delegate;
+@property (weak, nonatomic) id<UIScrollPageViewDelegate> delegate;
 
 - (void)registerItemView:(Class)itemViewClass;
 - (void)reloadData;
