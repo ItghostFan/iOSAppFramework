@@ -1,6 +1,6 @@
 //
 //  UIImage+Framework.m
-//  Pods
+//  iOSAppFramework
 //
 //  Created by FanChunxing on 2017/3/8.
 //  Copyright © 2017年 ItghostFan. All rights reserved.

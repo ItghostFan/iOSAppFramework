@@ -22,6 +22,8 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		98F3A6DA5089ECC05662480F /* Pods_iOSAppFramework_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F0C94BF69E4468B1BBAE624 /* Pods_iOSAppFramework_Example.framework */; };
+		F14797501F0CACD200C3C131 /* TestRow.m in Sources */ = {isa = PBXBuildFile; fileRef = F147974F1F0CACD200C3C131 /* TestRow.m */; };
+		F14797531F0CACE700C3C131 /* TestDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F14797521F0CACE700C3C131 /* TestDatabase.m */; };
 		F18F2DC71E2F531C001F027F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18F2DC61E2F531C001F027F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,10 @@
 		B53D2C0567432C44F2483420 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E00EFDE7D3916B41533E9EBD /* Pods-iOSAppFramework_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSAppFramework_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSAppFramework_Example/Pods-iOSAppFramework_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ECC0BDE581A60451B18BBEF3 /* iOSAppFramework.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = iOSAppFramework.podspec; path = ../iOSAppFramework.podspec; sourceTree = "<group>"; };
+		F147974E1F0CACD200C3C131 /* TestRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestRow.h; path = FMDB/TestRow.h; sourceTree = "<group>"; };
+		F147974F1F0CACD200C3C131 /* TestRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestRow.m; path = FMDB/TestRow.m; sourceTree = "<group>"; };
+		F14797511F0CACE700C3C131 /* TestDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDatabase.h; path = FMDB/TestDatabase.h; sourceTree = "<group>"; };
+		F14797521F0CACE700C3C131 /* TestDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDatabase.m; path = FMDB/TestDatabase.m; sourceTree = "<group>"; };
 		F18F2DC61E2F531C001F027F /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +141,7 @@
 		6003F593195388D20070C39A /* Example for iOSAppFramework */ = {
 			isa = PBXGroup;
 			children = (
+				F147974D1F0CAC9500C3C131 /* FMDB */,
 				6003F59C195388D20070C39A /* AppAppDelegate.h */,
 				6003F59D195388D20070C39A /* AppAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -186,6 +193,17 @@
 				6F87FDBFB75A492F5DFD3F16 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		F147974D1F0CAC9500C3C131 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				F147974E1F0CACD200C3C131 /* TestRow.h */,
+				F147974F1F0CACD200C3C131 /* TestRow.m */,
+				F14797511F0CACE700C3C131 /* TestDatabase.h */,
+				F14797521F0CACE700C3C131 /* TestDatabase.m */,
+			);
+			name = FMDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,7 +349,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -341,8 +359,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14797501F0CACD200C3C131 /* TestRow.m in Sources */,
 				6003F59E195388D20070C39A /* AppAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* AppViewController.m in Sources */,
+				F14797531F0CACE700C3C131 /* TestDatabase.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

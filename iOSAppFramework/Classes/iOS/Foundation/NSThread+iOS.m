@@ -1,6 +1,6 @@
 //
 //  NSThread+iOS.m
-//  yyliveworld
+//  iOSAppFramework
 //
 //  Created by FanChunxing on 2017/2/20.
 //  Copyright © 2017年 ItghostFan. All rights reserved.

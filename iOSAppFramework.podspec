@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSAppFramework'
-  s.version          = '0.1.8'
+  s.version          = '0.2.2'
   s.summary          = 'Source iOSAppFramework is a basic iOS App framework for App development.'
 
 # This description is used to generate tags and improve search results.
@@ -25,12 +25,15 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ItghostFan' => 'itghostfan@163.com' }
-  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.1.8' }
+  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.2.2' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   #s.source_files = 'iOSAppFramework/Classes/**/*'
+
+  s.source_files = 'iOSAppFramework/Classes/*.h'
+  s.default_subspec = 'Framework'
 
   s.subspec 'Framework' do |framework|
     framework.subspec 'Foundation' do |foundation|
@@ -39,6 +42,12 @@ TODO: Add long description of the pod here.
     framework.subspec 'UIKit' do |uikit|
     uikit.source_files = 'iOSAppFramework/Classes/Framework/UIKit/*.{h,m}'
     end
+    framework.subspec 'Any' do |any|
+    any.source_files = 'iOSAppFramework/Classes/Framework/Any/**/*.{h,m}'
+    end
+    framework.subspec 'ThirdParty' do |thirdparty|
+    thirdparty.source_files = 'iOSAppFramework/Classes/Framework/ThirdParty/**/*.{h,m}'
+    end
 
     framework.dependency 'Masonry'
     framework.dependency 'AFNetworking', '~> 2.3'
@@ -46,6 +55,8 @@ TODO: Add long description of the pod here.
     framework.dependency 'FMDB/SQLCipher'
     framework.dependency 'SDWebImage', '~> 3.7.5'
     framework.dependency 'ReactiveCocoa', '~> 2.5'
+    framework.dependency 'iOSAppFramework/iOS'
+    framework.dependency 'iOSAppFramework/ThirdParty'
   end
 
   s.subspec 'iOS' do |ios|
