@@ -32,7 +32,7 @@ TODO: Add long description of the pod here.
 
   #s.source_files = 'iOSAppFramework/Classes/**/*'
 
-  s.source_files = 'iOSAppFramework/Classes/*.h'
+  #s.source_files = 'iOSAppFramework/Classes/*.h'
   s.default_subspec = 'Framework'
 
   s.subspec 'Framework' do |framework|
