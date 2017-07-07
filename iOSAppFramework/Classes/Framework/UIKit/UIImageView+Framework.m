@@ -64,7 +64,16 @@ static const char *kLoadImageDisposable         = "LoadImageDisposable";
 
 - (RACSignal *)racDownLoadImageWith:(NSString *)url imageCache:(SDImageCache *)imageCache beforeCache:(UIImage * (^)(UIImage *image, NSString *url))beforeCache {
     RACSignal *diskSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSOperation *operation = [imageCache queryDiskCacheForKey:url done:^(UIImage *image, SDImageCacheType cacheType) {
+//        NSOperation *operation = [imageCache queryDiskCacheForKey:url done:^(UIImage *image, SDImageCacheType cacheType) {
+//            if (image) {
+//                [subscriber sendNext:image];
+//                [subscriber sendCompleted];
+//            }
+//            else {
+//                [subscriber sendError:nil];
+//            }
+//        }];
+        NSOperation *operation = [imageCache queryCacheOperationForKey:url done:^(UIImage * _Nullable image, NSData * _Nullable data, SDImageCacheType cacheType) {
             if (image) {
                 [subscriber sendNext:image];
                 [subscriber sendCompleted];
@@ -79,8 +88,8 @@ static const char *kLoadImageDisposable         = "LoadImageDisposable";
     }];
     
     RACSignal *networkSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        id<SDWebImageOperation> operation = [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        id<SDWebImageOperation> operation = [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:url] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             UIImage *effectImage = nil;
             
             NSAssert([NSThread isMainThread], @"%@ not in main thread!", [UIImageView class]);
@@ -100,6 +109,27 @@ static const char *kLoadImageDisposable         = "LoadImageDisposable";
                 [subscriber sendError:error];
             }
         }];
+//        id<SDWebImageOperation> operation = [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//            UIImage *effectImage = nil;
+//            
+//            NSAssert([NSThread isMainThread], @"%@ not in main thread!", [UIImageView class]);
+//            
+//            if (beforeCache) {
+//                effectImage = beforeCache(image, imageURL.absoluteString);
+//            }
+//            else {
+//                effectImage = image;
+//            }
+//            
+//            if (!error) {
+//                [subscriber sendNext:effectImage];
+//                [subscriber sendCompleted];
+//            }
+//            else {
+//                [subscriber sendError:error];
+//            }
+//        }];
         return [RACDisposable disposableWithBlock:^{
             [operation cancel];
         }];
@@ -150,7 +180,8 @@ static const char *kLoadImageDisposable         = "LoadImageDisposable";
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         RACDisposable *disposable = [[[SDWebImageManager sharedManager] racDownLoadImageWith:url imageCache:[SDWebImageManager themeCircleImageCache] beforeCache:^UIImage *(UIImage *image, NSString *url) {
             UIImage *effectImage = [image makeCircle];
-            [[SDWebImageManager themeCircleImageCache] storeImage:effectImage forKey:url];
+//            [[SDWebImageManager themeCircleImageCache] storeImage:effectImage forKey:url];
+            [[SDWebImageManager themeCircleImageCache] storeImage:effectImage forKey:url toDisk:YES completion:nil];
             return effectImage;
         }] subscribeNext:^(UIImage *image) {
             @strongify(self);
@@ -210,7 +241,8 @@ static const char *kLoadImageDisposable         = "LoadImageDisposable";
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         RACDisposable *disposable = [[[SDWebImageManager sharedManager] racDownLoadImageWith:url imageCache:[SDWebImageManager obliqueImageCache] beforeCache:^UIImage *(UIImage *image, NSString *url) {
             UIImage *effectImage = [image makeOblique:clipWidth size:size side:side];
-            [[SDWebImageManager obliqueImageCache] storeImage:effectImage forKey:url];
+//            [[SDWebImageManager obliqueImageCache] storeImage:effectImage forKey:url];
+            [[SDWebImageManager obliqueImageCache] storeImage:effectImage forKey:url toDisk:YES completion:nil];
             return effectImage;
         }] subscribeNext:^(UIImage *image) {
             @strongify(self);

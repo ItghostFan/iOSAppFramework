@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-#import "ObjectProperty.h"
+#import "iOSAppFramework/ObjectProperty.h"
 #import "NSInvocation+iOS.h"
 
 @implementation FMDBRow

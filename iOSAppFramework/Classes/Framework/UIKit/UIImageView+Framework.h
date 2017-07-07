@@ -10,6 +10,7 @@
 
 #import "ReactiveCocoa/ReactiveCocoa.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "SDWebImage/SDWebImageManager.h"
 
 #import "UIImage+Framework.h"
 
