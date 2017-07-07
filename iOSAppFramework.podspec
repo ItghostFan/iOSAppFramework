@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSAppFramework'
-  s.version          = '0.2.3'
-  s.summary          = 'App source tools.'
+  s.version          = '0.2.4'
+  s.summary          = 'App framework source tools.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Source iOSAppFramework is a basic iOS App framework for App development.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ItghostFan' => 'itghostfan@163.com' }
-  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.2.3' }
+  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.2.4' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -45,7 +45,41 @@ Source iOSAppFramework is a basic iOS App framework for App development.
     any.source_files = 'iOSAppFramework/Classes/Framework/Any/**/*.{h,m}'
     end
 
+    framework.subspec 'UIKit' do |uikit|
+    uikit.source_files = 'iOSAppFramework/Classes/Framework/UIKit/*.{h,m}'
+    end
+
+    framework.subspec 'ThirdParty' do |thirdparty|
+    thirdparty.source_files = 'iOSAppFramework/Classes/Framework/ThirdParty/**/*.{h,m}'
+    end
+
+    framework.dependency 'iOSAppFramework/iOS'
+    framework.dependency 'iOSAppFramework/ThirdParty'
   end
+
+  s.subspec 'iOS' do |ios|
+    ios.subspec 'Foundation' do |foundation|
+    foundation.source_files = 'iOSAppFramework/Classes/iOS/Foundation/*.{h,m}'
+    end
+    ios.subspec 'UIKit' do |uikit|
+    uikit.source_files = 'iOSAppFramework/Classes/iOS/UIKit/*.{h,m}'
+    end
+  end
+
+  s.subspec 'ThirdParty' do |thirdparty|
+    thirdparty.subspec 'ReactiveCocoa' do |reactivecocoa|
+    reactivecocoa.source_files = 'iOSAppFramework/Classes/ThirdParty/ReactiveCocoa/*.{h,m}'
+    end
+    thirdparty.dependency 'ReactiveCocoa', '~> 2.5'
+  end
+
+
+  s.dependency 'Masonry', '~> 1.0.2'
+  s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'JSONModel', '~> 1.7.0'
+  s.dependency 'FMDB/SQLCipher', '~> 2.7.2'
+  s.dependency 'SDWebImage', '~> 4.0.0'
+  s.dependency 'ReactiveCocoa', '~> 2.5'
 
   # s.resource_bundles = {
   #   'iOSAppFramework' => ['iOSAppFramework/Assets/*.png']
