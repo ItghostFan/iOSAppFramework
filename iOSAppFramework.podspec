@@ -49,10 +49,10 @@ TODO: Add long description of the pod here.
     thirdparty.source_files = 'iOSAppFramework/Classes/Framework/ThirdParty/**/*.{h,m}'
     end
 
-    framework.dependency 'Masonry'
+    framework.dependency 'Masonry', '~> 1.0.2'
     framework.dependency 'AFNetworking', '~> 2.3'
     framework.dependency 'JSONModel', '~> 1.7.0'
-    framework.dependency 'FMDB/SQLCipher'
+    framework.dependency 'FMDB/SQLCipher', '~> 2.7.2'
     framework.dependency 'SDWebImage', '~> 3.7.5'
     framework.dependency 'ReactiveCocoa', '~> 2.5'
     framework.dependency 'iOSAppFramework/iOS'

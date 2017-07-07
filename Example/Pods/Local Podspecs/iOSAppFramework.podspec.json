@@ -25,7 +25,7 @@
       "name": "Framework",
       "dependencies": {
         "Masonry": [
-
+          "~>1.0.2"
         ],
         "AFNetworking": [
           "~> 2.3"
