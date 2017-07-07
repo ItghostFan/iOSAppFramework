@@ -41,42 +41,10 @@ Source iOSAppFramework is a basic iOS App framework for App development.
     foundation.source_files = 'iOSAppFramework/Classes/Framework/Foundation/*.{h,m}'
     end
 
-    framework.subspec 'UIKit' do |uikit|
-    uikit.source_files = 'iOSAppFramework/Classes/Framework/UIKit/*.{h,m}'
-    end
-
     framework.subspec 'Any' do |any|
     any.source_files = 'iOSAppFramework/Classes/Framework/Any/**/*.{h,m}'
     end
 
-    framework.subspec 'ThirdParty' do |thirdparty|
-    thirdparty.source_files = 'iOSAppFramework/Classes/Framework/ThirdParty/**/*.{h,m}'
-    end
-
-    framework.dependency 'Masonry', '~> 1.0.2'
-    framework.dependency 'AFNetworking', '~> 2.3'
-    framework.dependency 'JSONModel', '~> 1.7.0'
-    framework.dependency 'FMDB/SQLCipher', '~> 2.7.2'
-    framework.dependency 'SDWebImage', '~> 3.7.5'
-    framework.dependency 'ReactiveCocoa', '~> 2.5'
-    framework.dependency 'iOSAppFramework/iOS'
-    framework.dependency 'iOSAppFramework/ThirdParty'
-  end
-
-  s.subspec 'iOS' do |ios|
-    ios.subspec 'Foundation' do |foundation|
-    foundation.source_files = 'iOSAppFramework/Classes/iOS/Foundation/*.{h,m}'
-    end
-    ios.subspec 'UIKit' do |uikit|
-    uikit.source_files = 'iOSAppFramework/Classes/iOS/UIKit/*.{h,m}'
-    end
-  end
-
-  s.subspec 'ThirdParty' do |thirdparty|
-    thirdparty.subspec 'ReactiveCocoa' do |reactivecocoa|
-    reactivecocoa.source_files = 'iOSAppFramework/Classes/ThirdParty/ReactiveCocoa/*.{h,m}'
-    end
-    thirdparty.dependency 'ReactiveCocoa', '~> 2.5'
   end
 
   # s.resource_bundles = {
