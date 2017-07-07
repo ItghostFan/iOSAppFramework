@@ -1,5 +1,7 @@
 use_frameworks!
 
+inhibit_all_warnings!
+
 target 'iOSAppFramework_Example' do
 #    pod 'iOSAppFramework', :subspecs => ['iOS'], :path => '../'
 #    pod 'iOSAppFramework', :subspecs => ['ThirdParty'], :path => '../'
