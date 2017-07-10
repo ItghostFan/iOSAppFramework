@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSAppFramework'
-  s.version          = '0.2.7'
+  s.version          = '0.2.8'
   s.summary          = 'App framework source tools.'
 
 # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Source iOSAppFramework is a basic iOS App framework for App development.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ItghostFan' => 'itghostfan@163.com' }
-  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.2.6' }
+  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.2.8' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -37,7 +37,7 @@ Source iOSAppFramework is a basic iOS App framework for App development.
   s.default_subspec = 'Framework'
 
   s.subspec 'Framework' do |framework|
-    foundation.source_files = 'iOSAppFramework/Classes/Framework/**/*.{h,m}'
+    framework.source_files = 'iOSAppFramework/Classes/Framework/**/*.{h,m}'
     framework.dependency 'iOSAppFramework/iOS'
     framework.dependency 'iOSAppFramework/ThirdParty'
   end
@@ -47,7 +47,7 @@ Source iOSAppFramework is a basic iOS App framework for App development.
   end
 
   s.subspec 'ThirdParty' do |thirdparty|
-    reactivecocoa.source_files = 'iOSAppFramework/Classes/ThirdParty/**/*.{h,m}'
+    thirdparty.source_files = 'iOSAppFramework/Classes/ThirdParty/**/*.{h,m}'
   end
 
   s.dependency 'Masonry', '~> 1.0.2'
