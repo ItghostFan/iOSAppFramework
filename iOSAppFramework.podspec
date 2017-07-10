@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSAppFramework'
-  s.version          = '0.2.6'
+  s.version          = '0.2.7'
   s.summary          = 'App framework source tools.'
 
 # This description is used to generate tags and improve search results.
@@ -37,42 +37,18 @@ Source iOSAppFramework is a basic iOS App framework for App development.
   s.default_subspec = 'Framework'
 
   s.subspec 'Framework' do |framework|
-    framework.subspec 'Foundation' do |foundation|
-    foundation.source_files = 'iOSAppFramework/Classes/Framework/Foundation/*.{h,m}'
-    end
-
-    framework.subspec 'Any' do |any|
-    any.source_files = 'iOSAppFramework/Classes/Framework/Any/**/*.{h,m}'
-    end
-
-    framework.subspec 'UIKit' do |uikit|
-    uikit.source_files = 'iOSAppFramework/Classes/Framework/UIKit/*.{h,m}'
-    end
-
-    framework.subspec 'ThirdParty' do |thirdparty|
-    thirdparty.source_files = 'iOSAppFramework/Classes/Framework/ThirdParty/**/*.{h,m}'
-    end
-
+    foundation.source_files = 'iOSAppFramework/Classes/Framework/**/*.{h,m}'
     framework.dependency 'iOSAppFramework/iOS'
     framework.dependency 'iOSAppFramework/ThirdParty'
   end
 
   s.subspec 'iOS' do |ios|
-    ios.subspec 'Foundation' do |foundation|
-    foundation.source_files = 'iOSAppFramework/Classes/iOS/Foundation/*.{h,m}'
-    end
-    ios.subspec 'UIKit' do |uikit|
-    uikit.source_files = 'iOSAppFramework/Classes/iOS/UIKit/*.{h,m}'
-    end
+    ios.source_files = 'iOSAppFramework/Classes/iOS/**/*.{h,m}'
   end
 
   s.subspec 'ThirdParty' do |thirdparty|
-    thirdparty.subspec 'ReactiveCocoa' do |reactivecocoa|
-    reactivecocoa.source_files = 'iOSAppFramework/Classes/ThirdParty/ReactiveCocoa/*.{h,m}'
-    end
-    thirdparty.dependency 'ReactiveCocoa', '~> 2.5'
+    reactivecocoa.source_files = 'iOSAppFramework/Classes/ThirdParty/**/*.{h,m}'
   end
-
 
   s.dependency 'Masonry', '~> 1.0.2'
   s.dependency 'AFNetworking', '~> 2.3'
