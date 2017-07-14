@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSAppFramework'
-  s.version          = '0.2.9'
+  s.version          = '0.2.10'
   s.summary          = 'App framework source tools.'
 
 # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Source iOSAppFramework is a basic iOS App framework for App development.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ItghostFan' => 'itghostfan@163.com' }
-  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.2.9' }
+  s.source           = { :git => 'https://github.com/ItghostFan/iOSAppFramework.git', :tag => '0.2.10' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -33,11 +33,23 @@ Source iOSAppFramework is a basic iOS App framework for App development.
 
 #s.source_files = 'iOSAppFramework/Classes/**/*'
 
-  s.source_files = 'iOSAppFramework/Classes/**/**/*.h'
-  
+#s.source_files = 'iOSAppFramework/Classes/**/**/*.h'
+
+  s.default_subspec = 'Framework'
+  s.subspec 'Framework' do |framework|
+    framework.source_files = 'iOSAppFramework/Classes/Framework/**/*.{h,m}'
+    framework.dependency 'iOSAppFramework/iOS'
+  end
+
+  s.subspec 'iOS' do |ios|
+    ios.source_files = 'iOSAppFramework/Classes/iOS/**/*.{h,m}'
+  end
+
 
   s.dependency 'Masonry', '~> 1.0.2'
-  s.dependency 'AFNetworking', '~> 2.3'
+  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'iOSRunTime'
+  s.dependency 'iOSThirdPartyTrap'
   s.dependency 'JSONModel', '~> 1.7.0'
   s.dependency 'FMDB/SQLCipher', '~> 2.7.2'
   s.dependency 'SDWebImage', '~> 4.0.0'
