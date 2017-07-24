@@ -10,6 +10,8 @@
 
 @interface NSInvocation (iOS)
 
++ (instancetype)invocationWithSelector:(SEL)selector prototype:(Class)prototype, ...;
+
 - (id)getReturnValue;
 
 @end

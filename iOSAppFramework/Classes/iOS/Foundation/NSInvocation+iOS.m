@@ -10,6 +10,21 @@
 
 @implementation NSInvocation (iOS)
 
++ (instancetype)invocationWithSelector:(SEL)selector prototype:(Class)prototype, ... {
+    NSMethodSignature *signature = [prototype instanceMethodSignatureForSelector:selector];
+    NSInvocation *instance = [NSInvocation invocationWithMethodSignature:signature];
+    instance.selector = selector;
+    va_list args;
+    va_start(args, prototype);
+    for (int index = 2; index < signature.numberOfArguments; ++index) {
+        void *argument = va_arg(args, void *);
+        [instance setArgument:argument atIndex:index];
+    }
+    va_end(args);
+//    [instance retainArguments];
+    return instance;
+}
+
 - (id)getReturnValue {
 #define WRAP_AND_RETURN(type) \
 do { \

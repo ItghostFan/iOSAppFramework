@@ -10,8 +10,19 @@
 
 @implementation AppAppDelegate
 
++ (void)testArgs:(NSInteger)count, ... {
+    va_list args;
+    va_start(args, count);
+    for (int index = 0; index < count; ++index) {
+        int value = va_arg(args, int);
+        NSLog(@"%d", value);
+    }
+    va_end(args);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [AppAppDelegate testArgs:3, 1, 2, 3];
     // Override point for customization after application launch.
     return YES;
 }

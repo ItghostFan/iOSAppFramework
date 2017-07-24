@@ -8,6 +8,21 @@
 
 #import "UIImage+Framework.h"
 
+@interface ImageEffectsStrategy ()
+@property (strong, nonatomic, readwrite) NSArray<__kindof NSInvocation *> *effects;
+@end
+
+@implementation ImageEffectsStrategy
+
+- (instancetype)initWithEffects:(NSArray<__kindof NSInvocation *> *)effects {
+    if (self = [super init]) {
+        self.effects = effects;
+    }
+    return self;
+}
+
+@end
+
 @implementation UIImage (Framework)
 
 - (UIImage *)makeScale:(CGFloat)scale {
@@ -30,6 +45,22 @@
     UIImage *circleImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return circleImage;
+}
+
+- (UIImage *)makeGray {
+    CGSize imageSize = CGSizeMake(MIN(self.size.height, self.size.width), MIN(self.size.height, self.size.width));
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+    CGContextRef context = CGBitmapContextCreate(nil, imageSize.width, imageSize.height, 8, 0, colorSpace,kCGImageAlphaPremultipliedLast);
+    CGColorSpaceRelease(colorSpace);
+    if (context == NULL) {
+        return nil;
+    }
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, imageSize.width, imageSize.height), self.CGImage);
+    CGImageRef grayImageRef = CGBitmapContextCreateImage(context);
+    UIImage *grayImage = [UIImage imageWithCGImage:grayImageRef];
+    CGContextRelease(context);
+    CGImageRelease(grayImageRef);
+    return grayImage;
 }
 
 - (UIImage *)makeOblique:(CGFloat)clipWidth size:(CGSize)size side:(UIImageObliqueSide)side {
