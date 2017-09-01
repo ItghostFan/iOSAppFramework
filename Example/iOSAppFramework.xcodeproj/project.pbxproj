@@ -25,7 +25,6 @@
 		F14797501F0CACD200C3C131 /* TestRow.m in Sources */ = {isa = PBXBuildFile; fileRef = F147974F1F0CACD200C3C131 /* TestRow.m */; };
 		F14797531F0CACE700C3C131 /* TestDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F14797521F0CACE700C3C131 /* TestDatabase.m */; };
 		F18F2DC71E2F531C001F027F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18F2DC61E2F531C001F027F /* Launch Screen.storyboard */; };
-		F1D5C4391F1E176500FA56FD /* UICustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D5C4381F1E176500FA56FD /* UICustomView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +69,6 @@
 		F14797511F0CACE700C3C131 /* TestDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDatabase.h; path = FMDB/TestDatabase.h; sourceTree = "<group>"; };
 		F14797521F0CACE700C3C131 /* TestDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDatabase.m; path = FMDB/TestDatabase.m; sourceTree = "<group>"; };
 		F18F2DC61E2F531C001F027F /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		F1D5C4371F1E176500FA56FD /* UICustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomView.h; sourceTree = "<group>"; };
-		F1D5C4381F1E176500FA56FD /* UICustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +150,6 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				F18F2DC61E2F531C001F027F /* Launch Screen.storyboard */,
-				F1D5C4371F1E176500FA56FD /* UICustomView.h */,
-				F1D5C4381F1E176500FA56FD /* UICustomView.m */,
 			);
 			name = "Example for iOSAppFramework";
 			path = iOSAppFramework;
@@ -367,7 +362,6 @@
 				F14797501F0CACD200C3C131 /* TestRow.m in Sources */,
 				6003F59E195388D20070C39A /* AppAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* AppViewController.m in Sources */,
-				F1D5C4391F1E176500FA56FD /* UICustomView.m in Sources */,
 				F14797531F0CACE700C3C131 /* TestDatabase.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
