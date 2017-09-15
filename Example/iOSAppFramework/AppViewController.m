@@ -15,7 +15,8 @@
 
 #import "UIColor+iOS.h"
 //#import "UILabel+Framework.h"
-#import "LinkLabel.h"
+#import "iOSAppFramework/LinkLabel.h"
+#import "iOSAppFramework/NSAttributedString+Framework.h"
 
 #import "TestDatabase.h"
 
@@ -40,7 +41,6 @@
 @property (weak, nonatomic) UIScrollView *scrollView;
 @property (weak, nonatomic) UICollectionView *collectionView;
 @property (weak, nonatomic) UITextField *textField;
-@property (weak, nonatomic) UICustomView *customView;
 
 @end
 
@@ -203,7 +203,7 @@
     {
         UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
         [tap.rac_gestureSignal subscribeNext:^(id x) {
-            UILabel *label = (UILabel *)tap.view;
+            LinkLabel *label = (LinkLabel *)tap.view;
 //            NSRange lineRange = NSMakeRange(0, 0);
             //            for (NSInteger line = 0; YES; ++line) {
             //                CGRect lineRect = [label textRectForBounds:CGRectZero limitedToNumberOfLines:1];

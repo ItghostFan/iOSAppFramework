@@ -24,7 +24,7 @@
     NSRange glyphRange = [layoutManager glyphRangeForTextContainer:textContainer];
     __block CGRect textRect = CGRectZero;
     [layoutManager enumerateLineFragmentsForGlyphRange:glyphRange usingBlock:^(CGRect rect, CGRect usedRect, NSTextContainer * _Nonnull textContainer, NSRange glyphRange, BOOL * _Nonnull stop) {
-        textRect = CGRectUnion(textRect, rect);
+        textRect = CGRectUnion(textRect, usedRect);
     }];
     return textRect;
 }

@@ -26,11 +26,13 @@
 - (void)setAttributedText:(NSAttributedString *)attributedText {
     _attributedText = attributedText;
     self.textStorage = [[NSTextStorage alloc] initWithAttributedString:_attributedText];
+    [self setNeedsDisplay];
 }
 
 - (void)setText:(NSString *)text {
     _text = text;
     self.textStorage = [[NSTextStorage alloc] initWithString:text];
+    [self setNeedsDisplay];
 }
 
 - (void)setTextStorage:(NSTextStorage *)textStorage {
