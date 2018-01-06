@@ -10,10 +10,13 @@
 
 #import "UIPage.h"
 
+@class RACDisposable;
+
 @interface UIScrollPage : UICollectionViewCell
 
 @property (assign, nonatomic) NSInteger columnCount;
 @property (assign, nonatomic) NSInteger rowCount;
+@property (strong, nonatomic) RACDisposable *itemDidSelectedDisposable;
 
 - (void)registerItemView:(Class)itemViewClass;
 - (void)reloadPage:(UIPage *)page selectedItems:(NSArray *)selectedItems;

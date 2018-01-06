@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSAppFramework'
-  s.version          = '0.2.17'
+  s.version          = '0.2.18'
   s.summary          = 'App framework source tools.'
 
 # This description is used to generate tags and improve search results.

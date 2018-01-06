@@ -8,6 +8,7 @@ target 'iOSAppFramework_Example' do
 #    pod 'iOSAppFramework', :subspecs => ['Framework'], :path => '../'
 
     pod 'iOSAppFramework', :path => '../'
+    pod 'SDWebImage/WebP'
     
   #target 'iOSAppFramework_Tests' do
    # inherit! :search_paths

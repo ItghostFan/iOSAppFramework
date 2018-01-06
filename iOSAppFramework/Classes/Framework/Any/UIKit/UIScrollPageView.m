@@ -22,7 +22,6 @@
 @property (assign, nonatomic) UICollectionViewScrollDirection scrollDirection;
 @property (assign, nonatomic) Class itemViewClass;
 
-@property (weak, nonatomic) RACDisposable *itemDidSelectedDisposable;
 @end
 
 @implementation UIScrollPageView
@@ -104,7 +103,7 @@
     [scrollPage reloadPage:[self.delegate pageAt:indexPath] selectedItems:[self.delegate selectedItems:self]] ;
     
     @weakify(self);
-    self.itemDidSelectedDisposable = [self racObserveSelector:@selector(didSelected:) object:scrollPage next:^(RACTuple *tuple) {
+    scrollPage.itemDidSelectedDisposable = [self racObserveSelector:@selector(didSelected:) object:scrollPage next:^(RACTuple *tuple) {
         RACTupleUnpack(id item) = tuple;
         @strongify(self);
         [self.delegate scrollPageView:self didSelected:item];
@@ -112,7 +111,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.itemDidSelectedDisposable dispose];
+    UIScrollPage *scrollPage = (UIScrollPage *)cell;
+    [scrollPage.itemDidSelectedDisposable dispose];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

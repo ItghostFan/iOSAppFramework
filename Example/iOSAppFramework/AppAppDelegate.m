@@ -20,10 +20,35 @@
     va_end(args);
 }
 
++ (NSString *)formatNumber:(NSNumber *)number {
+    CGFloat value = 0.0f;
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    formatter.roundingMode = kCFNumberFormatterRoundDown;
+    if (number.unsignedLongLongValue > 99999999) {
+        UInt64 integerPart = number.unsignedLongLongValue / 1000000;
+        formatter.minimumFractionDigits = 2;
+        formatter.maximumFractionDigits = 2;
+        value = integerPart / 100.0f;
+        return [NSString stringWithFormat:NSLocalizedString(@"%@亿", nil), [formatter stringFromNumber:@(value)]];
+    }
+    else if (number.unsignedLongLongValue > 999999) {
+        value = number.unsignedLongLongValue / 10000;
+        return [NSString stringWithFormat:NSLocalizedString(@"%@万", nil), [formatter stringFromNumber:@(value)]];
+    }
+    return number.stringValue;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [AppAppDelegate testArgs:3, 1, 2, 3];
     // Override point for customization after application launch.
+    NSLog(@"%@", [AppAppDelegate formatNumber:@(999999)]);
+    NSLog(@"%@", [AppAppDelegate formatNumber:@(1499999)]);
+    NSLog(@"%@", [AppAppDelegate formatNumber:@(1500000)]);
+    
+    NSLog(@"%@", [AppAppDelegate formatNumber:@(99994999)]);
+    NSLog(@"%@", [AppAppDelegate formatNumber:@(144999999)]);
+    NSLog(@"%@", [AppAppDelegate formatNumber:@(145000000)]);
     return YES;
 }
 

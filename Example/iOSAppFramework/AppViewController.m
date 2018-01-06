@@ -225,6 +225,10 @@
 //        make.left.equalTo(label.mas_right);
 //        make.top.equalTo(label);
 //    }];
+    
+    [[self.imageView loadCoverWith:@"https://www.gstatic.com/webp/gallery/1.sm.webp" placeHolder:nil] subscribeNext:^(id x) {
+        ;
+    }];
     NSLog(@"Did!");
 }
 
@@ -258,6 +262,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIImageView *)imageView {
+    if (_imageView)
+        return _imageView;
+    UIImageView *imageView = [UIImageView new];
+    _imageView = imageView;
+    [self.view addSubview:_imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
+        make.center.equalTo(self.view);
+    }];
+    return _imageView;
 }
 
 @end
