@@ -107,12 +107,12 @@
         RACTupleUnpack(id item) = tuple;
         @strongify(self);
         [self.delegate scrollPageView:self didSelected:item];
-    }];
+    }];      // why 0.2.18 failed at pod.
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     UIScrollPage *scrollPage = (UIScrollPage *)cell;
-    [scrollPage.itemDidSelectedDisposable dispose];
+    [scrollPage.itemDidSelectedDisposable dispose];     // why 0.2.18 failed at pod.
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

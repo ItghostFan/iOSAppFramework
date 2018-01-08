@@ -16,7 +16,7 @@
 
 @property (assign, nonatomic) NSInteger columnCount;
 @property (assign, nonatomic) NSInteger rowCount;
-@property (strong, nonatomic) RACDisposable *itemDidSelectedDisposable;
+@property (strong, nonatomic) RACDisposable *itemDidSelectedDisposable;     // why 0.2.18 failed at pod.
 
 - (void)registerItemView:(Class)itemViewClass;
 - (void)reloadPage:(UIPage *)page selectedItems:(NSArray *)selectedItems;
