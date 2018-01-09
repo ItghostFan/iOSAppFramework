@@ -18,6 +18,7 @@
 #import "UIScrollPage.h"
 
 @interface UIScrollPageView() <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@property (strong, nonatomic, readwrite) NSIndexPath* currentPageIndexPath;
 @property (weak, nonatomic) UICollectionView *contentCollectionView;
 @property (assign, nonatomic) UICollectionViewScrollDirection scrollDirection;
 @property (assign, nonatomic) Class itemViewClass;
@@ -101,7 +102,7 @@
     scrollPage.columnCount = [self.delegate pageColumnCount:self];
     scrollPage.rowCount = [self.delegate pageRowCount:self];
     [scrollPage reloadPage:[self.delegate pageAt:indexPath] selectedItems:[self.delegate selectedItems:self]] ;
-    
+    self.currentPageIndexPath = indexPath;
     @weakify(self);
     scrollPage.itemDidSelectedDisposable = [self racObserveSelector:@selector(didSelected:) object:scrollPage next:^(RACTuple *tuple) {
         RACTupleUnpack(id item) = tuple;

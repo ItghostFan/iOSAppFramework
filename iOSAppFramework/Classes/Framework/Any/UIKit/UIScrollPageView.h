@@ -23,6 +23,7 @@
 @interface UIScrollPageView : UIView
 
 @property (weak, nonatomic) id<UIScrollPageViewDelegate> delegate;
+@property (strong, nonatomic, readonly) NSIndexPath* currentPageIndexPath;
 
 - (void)registerItemView:(Class)itemViewClass;
 - (void)reloadData;
