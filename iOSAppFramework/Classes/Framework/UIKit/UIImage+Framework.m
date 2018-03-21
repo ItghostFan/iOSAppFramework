@@ -36,12 +36,14 @@
 
 - (UIImage *)makeCircle {
     CGSize imageSize = CGSizeMake(MIN(self.size.height, self.size.width), MIN(self.size.height, self.size.width));
+    CGFloat x = - (self.size.width > self.size.height ? (self.size.width - self.size.height) / 2 : 0.0f);
+    CGFloat y = - (self.size.height > self.size.width ? (self.size.height - self.size.width) / 2 : 0.0f);
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, YES);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(0, 0, imageSize.width, imageSize.height);
+    CGRect rect = CGRectMake(0.0f, 0.0f, imageSize.width, imageSize.height);
     CGContextAddEllipseInRect(context, rect);
     CGContextClip(context);
-    [self drawInRect:rect];
+    [self drawAtPoint:CGPointMake(x, y)];
     UIImage *circleImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return circleImage;
