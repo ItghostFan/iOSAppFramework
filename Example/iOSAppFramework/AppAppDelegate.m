@@ -49,7 +49,6 @@
     NSLog(@"%@", [AppAppDelegate formatNumber:@(99994999)]);
     NSLog(@"%@", [AppAppDelegate formatNumber:@(144999999)]);
     NSLog(@"%@", [AppAppDelegate formatNumber:@(145000000)]);
-    __IPHONE_11_0
     return YES;
 }
 
