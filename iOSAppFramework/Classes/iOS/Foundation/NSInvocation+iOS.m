@@ -18,7 +18,8 @@
     va_start(args, prototype);
     for (int index = 2; index < signature.numberOfArguments; ++index) {
         void *argument = va_arg(args, void *);
-        [instance setArgument:argument atIndex:index];
+        if (argument)
+            [instance setArgument:argument atIndex:index];
     }
     va_end(args);
 //    [instance retainArguments];
